@@ -6,7 +6,8 @@ WORKDIR /app
 # Install pnpm globally and copy package files
 COPY pnpm-lock.yaml package.json ./
 COPY scripts/prepare.ts ./scripts/prepare.ts
-RUN yarn global add pnpm && pnpm install
+RUN yarn global add pnpm@7.33.7 
+RUN pnpm install
 
 # Copy app source code and build for production
 COPY . .

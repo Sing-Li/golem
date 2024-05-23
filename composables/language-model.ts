@@ -9,7 +9,7 @@ export function useLanguageModel() {
     async function complete(prompt: string, params?: LMCompleteParams) {
         const client = new OpenAIApi(new Configuration({
             apiKey: apiKey.value || '',
-            basePath: "http://localhost:8000/v1",
+            basePath: "http://" + window.location.hostname + ":8000/v1",
         }))
 
         const additionalParams = {
@@ -36,14 +36,14 @@ export function useLanguageModel() {
 
     async function sendMessage(options: any) {
         const { onProgress, signal, ...requestBody } = options
-        const CHAT_COMPLETION_ENDPOINT = 'http://localhost:8000/v1/chat/completions'
+        const CHAT_COMPLETION_ENDPOINT = "http://" + window.location.hostname + ':8000/v1/chat/completions'
 
         const requestOptions: NitroFetchOptions<typeof CHAT_COMPLETION_ENDPOINT> = {
             method: 'POST',
             body: requestBody,
 
             headers: {
-                Origin: "http://localhost:3000",
+                Origin: "http://" + window.location.hostname + ":8000" ,
                 AcesssControlRequestMethod: "POST"
             }
           //  headers: {
